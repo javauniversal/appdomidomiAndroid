@@ -40,6 +40,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="center"
+                            android:id="@+id/txtProductPrice"
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"
                             android:text="$28.000"
@@ -49,7 +50,7 @@
 
                 </FrameLayout>
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/txtProductName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
@@ -105,24 +106,44 @@
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:background="#fff">
-
-                    <ImageView
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/btnRemoveQty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:src="@drawable/ic_remove_white_24dp"
                         android:layout_margin="15dp"
-                        android:src="@drawable/menos"/>
+                        app:backgroundTint="@color/colorPrimary"
+                        android:scaleType="center"
+                        app:elevation="6dp"
+                        app:fabSize="normal"
+                        android:clickable="true"
+                        app:pressedTranslationZ="12dp"
+                        app:rippleColor="@color/colorPrimary"
+                        tools:ignore="RtlHardcoded" />
                     <TextView
                         android:layout_width="wrap_content"
                         android:gravity="center"
                         android:textSize="33sp"
                         android:layout_margin="20dp"
                         android:text="1"
+                        android:id="@+id/txtProductQty"
                         android:layout_height="wrap_content" />
-                    <ImageView
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/btnAddQty"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:src="@drawable/ic_add_white_24dp"
                         android:layout_margin="15dp"
-                        android:src="@drawable/mas"/>
+                        app:backgroundTint="@color/colorPrimary"
+                        android:scaleType="center"
+                        app:elevation="6dp"
+                        app:fabSize="normal"
+                        android:clickable="true"
+                        app:pressedTranslationZ="12dp"
+                        app:rippleColor="@color/colorPrimary"
+                        tools:ignore="RtlHardcoded" />
+
+
 
                 </LinearLayout>
                 <LinearLayout
@@ -154,6 +175,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
                         android:layout_weight="0.5"
+                        android:id="@+id/layout_order"
                         android:layout_marginRight="30dp"
                         android:layout_marginLeft="30dp"
                         android:background="@drawable/shape_button_get">
@@ -172,6 +194,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="30dp"
+                        android:visibility="gone"
                         android:layout_marginLeft="30dp"
                         android:layout_marginTop="20dp"
                         android:background="@drawable/shape_button_edit">

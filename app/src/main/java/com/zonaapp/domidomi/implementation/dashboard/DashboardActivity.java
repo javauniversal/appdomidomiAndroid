@@ -1,36 +1,31 @@
-package com.zonaapp.domidomi.controller;
+package com.zonaapp.domidomi.implementation.dashboard;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.DefaultRetryPolicy;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.Volley;
 import com.zonaapp.domidomi.R;
-import com.zonaapp.domidomi.controller.DeliveryStatusActivity;
-import com.zonaapp.domidomi.util.Constants;
+import com.zonaapp.domidomi.implementation.createAccount.CreateAccountActivity;
+import com.zonaapp.domidomi.model.Product;
+import com.zonaapp.domidomi.util.PreferencesManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
+import android.support.design.widget.FloatingActionButton;
+import android.widget.TextView;
 
 import butterknife.ButterKnife;
 
 public class DashboardActivity extends AppCompatActivity {
 
+    TextView txtProductPrice;
 
+    TextView txtProductName;
+
+    TextView txtProductQnty;
+    FloatingActionButton btnAddQty;
+    FloatingActionButton btnRemoveQty;
+    int productQty = 1;
     LinearLayout layoutOrder;
 
     @Override
@@ -41,6 +36,18 @@ public class DashboardActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
+        txtProductName = (TextView) findViewById(R.id.txtProductName) ;
+        txtProductPrice = (TextView) findViewById(R.id.txtProductPrice) ;
+        txtProductQnty = (TextView) findViewById(R.id.txtProductQty) ;
+        btnAddQty = (FloatingActionButton) findViewById(R.id.btnAddQty) ;
+        btnRemoveQty = (FloatingActionButton) findViewById(R.id.btnRemoveQty) ;
+        layoutOrder = (LinearLayout) findViewById(R.id.layout_order) ;
+
+        Product product = (Product) getIntent().getSerializableExtra("product");
+        txtProductName.setText(product.getDescription());
+        txtProductPrice.setText(product.getPrice());
+
+        addHandlers();
         /*layoutOrder = (LinearLayout) findViewById(R.id.layout_order);
         layoutOrder.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,6 +115,48 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });*/
 
+    }
+
+    private void addHandlers() {
+
+        btnAddQty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (productQty != 10){
+                    productQty ++;
+                    txtProductQnty.setText(String.valueOf(productQty));
+                }
+
+            }
+        });
+
+        btnRemoveQty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (productQty != 1){
+                    productQty --;
+                    txtProductQnty.setText(String.valueOf(productQty));
+                }
+            }
+        });
+
+        layoutOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                validateUser();
+            }
+
+
+        });
+    }
+
+    private void validateUser() {
+        if (PreferencesManager.getCurrentUser(this) != null){
+
+        }else{
+            Intent intent = new Intent(this, CreateAccountActivity.class);
+            startActivity(intent);
+        }
     }
 
 }
