@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F20426</color>
+    <color name="colorPrimaryDark">#F20426</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="green">#558B2F</color>
+    <color name="gray_light">#DBDBDB</color>
+    <color name="gray_light_">#F2F2F2</color>
+    <color name="gray_text">#B3B3B3</color>
+    <color name="background_options_home">#f8f8f8</color>
+    <color name="background_rows_scheme">#FFC8C8C8</color>
+    <color name="button_yellow">#FFB130</color>
+    <color name="menu_background_login">#CCEAEF</color>
+    <color name="background_transparent">#CC000000</color>
+    <color name="background_locattion">#9ad4df</color>
+    <color name="vaccination_blue">#28AFD5</color>
+    <color name="scheme_dark_blue">#0094AE</color>
+    <color name="scheme_light_blue">#CEEAF0</color>
+    <color name="add_vaccination_light_blue">#CFEAF1</color>
+    <color name="add_vaccination_dark_blue">#2094AE</color>
+    <color name="purple">#822681</color>
+    <color name="red_alert">#A9292E</color>
+    <color name="blue">#00558B</color>
+</resources>

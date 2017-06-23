@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">DomiDomi</string>
+    <string name="pizza_quantity">CANTIDAD DE <b>PIZZA</b></string>
+</resources>
