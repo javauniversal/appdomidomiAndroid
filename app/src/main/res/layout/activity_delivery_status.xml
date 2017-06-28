@@ -1,29 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context="com.domidomi.domidomimvp.Controllers.DeliveryStatusActivity">
+    android:orientation="vertical">
 
-    <TextView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:layout_height="150dp"
-        android:text="Su pedido ha sido enviado, en 19 minutos lo tendras!"/>
-    <com.timqi.sectorprogressview.SectorProgressView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:layout_height="250dp"
-        android:layout_width="250dp"
-        android:id="@+id/spv"
-        app:bgColor="#e5e5e5"
-        android:layout_gravity="center"
-        app:fgColor="@color/green"
-        app:percent="25"
-        app:startAngle="0"
-        />
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:layout_height="150dp"
+                android:text="ESTADO DE TU PEDIDO"/>
+            <com.timqi.sectorprogressview.SectorProgressView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_height="250dp"
+                android:layout_width="250dp"
+                android:visibility="gone"
+                android:id="@+id/spv"
+                app:bgColor="#e5e5e5"
+                android:layout_gravity="center"
+                app:fgColor="@color/green"
+                app:percent="25"
+                app:startAngle="0"
+                />
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_gravity="center"
+                android:id="@+id/image_pizza"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="250dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:textSize="38sp"
+                android:id="@+id/txtOrderTime"
+                android:textColor="@color/colorPrimary"
+                android:layout_height="wrap_content"
+                android:text="19:00 Min"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@drawable/shape_button_edit">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_gravity="center"
+                        android:src="@drawable/llamada"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:gravity="center"
+                        android:textSize="23sp"
+                        android:layout_margin="10dp"
+                        android:layout_gravity="center"
+                        android:text="Contáctanos"
+                        android:textColor="@color/colorPrimary"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

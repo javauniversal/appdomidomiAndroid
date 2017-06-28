@@ -11,6 +11,7 @@ import android.util.Base64;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.zonaapp.domidomi.app.AppDomiDomi;
 import com.zonaapp.domidomi.model.BaseModel;
 import com.zonaapp.domidomi.model.User;
 
@@ -25,12 +26,12 @@ import java.io.OutputStream;
 
 public class PreferencesManager {
 
-    private static SharedPreferences getSharedPreferences(Context context) {
-        return context.getSharedPreferences(Constants.PREFS_FILE, Context.MODE_PRIVATE);
+    private static SharedPreferences getSharedPreferences() {
+        return AppDomiDomi.getInstance().getApplicationContext().getSharedPreferences(Constants.PREFS_FILE, Context.MODE_PRIVATE);
     }
 
-    public static void saveUser(User user, Context context) {
-        SharedPreferences.Editor editor = PreferencesManager.getSharedPreferences(context).edit();
+    public static void saveUser(User user) {
+        SharedPreferences.Editor editor = PreferencesManager.getSharedPreferences().edit();
         if(user == null) {
             editor.remove(Constants.CURRENT_USER);
         }else {
@@ -39,8 +40,8 @@ public class PreferencesManager {
         editor.apply();
     }
 
-    public static User getCurrentUser(Context context) {
-        String userJson = PreferencesManager.getSharedPreferences(context).getString(Constants.CURRENT_USER,
+    public static User getCurrentUser() {
+        String userJson = PreferencesManager.getSharedPreferences().getString(Constants.CURRENT_USER,
                 Constants.USER_NOT_FOUND);
 
         if(userJson.equals(Constants.USER_NOT_FOUND))

@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zonaapp.domidomi.R;
-import com.zonaapp.domidomi.implementation.dashboard.DashboardActivity;
+import com.zonaapp.domidomi.implementation.dashboard.controller.OrderActivity;
 import com.zonaapp.domidomi.implementation.slpash.business.SplashBusinessLogic;
 import com.zonaapp.domidomi.model.Establishment;
 
@@ -50,8 +50,9 @@ public class SplashActivity extends AppCompatActivity implements ISplashView {
 
     @Override
     public void onEstablishmentSuccess(List<Establishment> establishments) {
-        Intent intent = new Intent(SplashActivity.this, DashboardActivity.class);
+        Intent intent = new Intent(SplashActivity.this, OrderActivity.class);
         intent.putExtra("product" , establishments.get(0).getProducts().get(0));
+        intent.putExtra("idEstablishment", establishments.get(0).getId());
         startActivity(intent);
         finish();
     }

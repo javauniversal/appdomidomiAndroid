@@ -13,7 +13,7 @@
         <activity android:name=".MainActivity" >
 
         </activity>
-        <activity android:name=".implementation.dashboard.DashboardActivity"></activity>
+        <activity android:name=".implementation.dashboard.controller.OrderActivity"></activity>
         <activity android:name=".implementation.createAccount.CreateAccountActivity">
 
         </activity>
@@ -24,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".controller.DeliveryStatusActivity"></activity>
+        <activity android:name=".implementation.delivery.OrderStatusActivity"></activity>
         <service
             android:name=".util.MyFirebaseMessagingService">
             <intent-filter>

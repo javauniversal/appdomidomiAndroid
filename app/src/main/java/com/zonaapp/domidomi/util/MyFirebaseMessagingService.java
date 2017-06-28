@@ -28,7 +28,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.zonaapp.domidomi.R;
-import com.zonaapp.domidomi.controller.DeliveryStatusActivity;
+import com.zonaapp.domidomi.implementation.delivery.OrderStatusActivity;
 
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
@@ -88,7 +88,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * @param messageBody FCM message body received.
      */
     private void sendNotification(String messageBody) {
-        Intent intent = new Intent(this, DeliveryStatusActivity.class);
+        Intent intent = new Intent(this, OrderStatusActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
