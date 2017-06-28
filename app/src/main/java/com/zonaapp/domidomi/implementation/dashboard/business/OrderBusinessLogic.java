@@ -40,7 +40,7 @@ public class OrderBusinessLogic implements IOrderResponseHandler {
 
     }
 
-    public void sendOrder(Product product, int quantity, double latitude, double longitude, String idEstablishment){
+    public void sendOrder(Product product, int quantity, String latitude, String longitude, double userLatitude, double userLongitude, String idEstablishment){
 
         OrderRepository orderRepository = new OrderRepository();
 
@@ -57,6 +57,8 @@ public class OrderBusinessLogic implements IOrderResponseHandler {
             productsArray.put(orderProduct);
             objOrder.put("productos", productsArray);
             objOrder.put("direccion", user.getAddress());
+            objOrder.put("latitud_cliente", String.valueOf(userLatitude));
+            objOrder.put("longitud_cliente", String.valueOf(userLongitude));
             objOrder.put("latitud", String.valueOf(latitude));
             objOrder.put("longitud", String.valueOf(longitude));
             objOrder.put("idestablecimiento", Integer.parseInt(idEstablishment));

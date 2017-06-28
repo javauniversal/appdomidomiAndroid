@@ -39,6 +39,10 @@ public class OrderActivity extends AppCompatActivity implements IOrderView{
     OrderBusinessLogic orderBusinessLogic;
     Product product;
     String idEstablishment;
+    String establishmentLatitude;
+    String establishmentLongitude;
+    double clientLatitude;
+    double clientLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +59,13 @@ public class OrderActivity extends AppCompatActivity implements IOrderView{
         btnRemoveQty = (FloatingActionButton) findViewById(R.id.btnRemoveQty) ;
         layoutOrder = (LinearLayout) findViewById(R.id.layout_order) ;
 
-         product = (Product) getIntent().getSerializableExtra("product");
+        product = (Product) getIntent().getSerializableExtra("product");
         idEstablishment = getIntent().getStringExtra("idEstablishment");
+        establishmentLatitude = getIntent().getStringExtra("latitude");
+        establishmentLongitude = getIntent().getStringExtra("longitude");
+        clientLatitude = getIntent().getDoubleExtra("clientLatitude", 0);
+        clientLongitude = getIntent().getDoubleExtra("clientLongitude", 0);
+
         txtProductName.setText(product.getDescription());
         txtProductPrice.setText(product.getPrice());
         progressDialog = new ProgressDialog(this);
@@ -120,7 +129,7 @@ public class OrderActivity extends AppCompatActivity implements IOrderView{
 
     private void sendOrderToServer() {
         progressDialog.show();
-        orderBusinessLogic.sendOrder(product, Integer.parseInt(txtProductQnty.getText().toString()), 6.21884 , -75.57018, idEstablishment);
+        orderBusinessLogic.sendOrder(product, Integer.parseInt(txtProductQnty.getText().toString()), establishmentLatitude, establishmentLongitude ,clientLatitude, clientLongitude, idEstablishment);
 
     }
 

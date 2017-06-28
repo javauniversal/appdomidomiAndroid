@@ -50,16 +50,6 @@ public class OrderRepository {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                /*try {
-                    boolean statusCode = response.getBoolean("estado");
-                    if (statusCode == true){
-                        handler.onSendOrderResponse(null, response);
-                    }else{
-                        handler.onSendOrderResponse(new Error(String.valueOf("500"), response.getString("mensaje")), null);
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
             }
         }, new Response.ErrorListener() {
             @Override

@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">DomiDomi</string>
     <string name="pizza_quantity">CANTIDAD DE <b>PIZZA</b></string>
+    <string name="permission_service_location">Para usar nuestro servicio, es necesario permitirle a DomiDomi tener acceso a la ubicación de este dispositivo</string>
 </resources>
