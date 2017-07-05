@@ -11,6 +11,6 @@ import java.util.List;
 public interface IOrderView {
 
     void onSendOrderSuccess();
-    void onSendOderFailure();
+    void onSendOderFailure(String message);
 
 }

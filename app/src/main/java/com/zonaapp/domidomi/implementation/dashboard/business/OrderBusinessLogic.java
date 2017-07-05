@@ -16,6 +16,7 @@ import com.zonaapp.domidomi.model.Order;
 import com.zonaapp.domidomi.model.OrderProduct;
 import com.zonaapp.domidomi.model.Product;
 import com.zonaapp.domidomi.model.User;
+import com.zonaapp.domidomi.util.Constants;
 import com.zonaapp.domidomi.util.PreferencesManager;
 
 import org.json.JSONArray;
@@ -64,7 +65,7 @@ public class OrderBusinessLogic implements IOrderResponseHandler {
             objOrder.put("idestablecimiento", Integer.parseInt(idEstablishment));
             objOrder.put("nombrecliente", user.getNames() + " " + user.getLastName());
             objOrder.put("celular", user.getPhone());
-            objOrder.put("emei", "23456resdfty");
+            objOrder.put("emei", PreferencesManager.getImeiDevice());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -75,9 +76,10 @@ public class OrderBusinessLogic implements IOrderResponseHandler {
     @Override
     public void onSendOrderResponse(Error error) {
         if (error == null){
+            PreferencesManager.saveBoolean(Constants.CURRENT_ORDER, true);
             mOrderView.onSendOrderSuccess();
         }else{
-            mOrderView.onSendOderFailure();
+            mOrderView.onSendOderFailure(error.getMessage());
         }
     }
 }

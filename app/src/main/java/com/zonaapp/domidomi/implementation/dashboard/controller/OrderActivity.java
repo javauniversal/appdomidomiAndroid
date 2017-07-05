@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.zonaapp.domidomi.R;
 import com.zonaapp.domidomi.implementation.createAccount.CreateAccountActivity;
 import com.zonaapp.domidomi.implementation.dashboard.business.OrderBusinessLogic;
@@ -42,6 +45,7 @@ public class OrderActivity extends AppCompatActivity implements IOrderView{
     String establishmentLatitude;
     String establishmentLongitude;
     double clientLatitude;
+    ImageView imageProduct;
     double clientLongitude;
 
     @Override
@@ -58,6 +62,7 @@ public class OrderActivity extends AppCompatActivity implements IOrderView{
         btnAddQty = (FloatingActionButton) findViewById(R.id.btnAddQty) ;
         btnRemoveQty = (FloatingActionButton) findViewById(R.id.btnRemoveQty) ;
         layoutOrder = (LinearLayout) findViewById(R.id.layout_order) ;
+        imageProduct = (ImageView) findViewById(R.id.image_product) ;
 
         product = (Product) getIntent().getSerializableExtra("product");
         idEstablishment = getIntent().getStringExtra("idEstablishment");
@@ -69,6 +74,11 @@ public class OrderActivity extends AppCompatActivity implements IOrderView{
         txtProductName.setText(product.getDescription());
         txtProductPrice.setText(product.getPrice());
         progressDialog = new ProgressDialog(this);
+        Glide.with(this)
+                .load(product.getPhoto())
+                .skipMemoryCache(true)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(imageProduct);
         progressDialog.setMessage("Enviando pedido...");
         orderBusinessLogic = new OrderBusinessLogic(this);
         addHandlers();
@@ -137,12 +147,14 @@ public class OrderActivity extends AppCompatActivity implements IOrderView{
     public void onSendOrderSuccess() {
         progressDialog.dismiss();
         Intent intent = new Intent(this, OrderStatusActivity.class);
+        intent.putExtra("isOrderActive", false);
         startActivity(intent);
+        finish();
     }
 
     @Override
-    public void onSendOderFailure() {
-        Toasty.error(this, "Ha ocurrido un error al intentar enviar el pedido", Toast.LENGTH_SHORT, true).show();
+    public void onSendOderFailure(String message) {
+        Toasty.error(this, message, Toast.LENGTH_LONG, true).show();
         progressDialog.dismiss();
     }
 }

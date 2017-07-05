@@ -45,9 +45,10 @@ public class OrderRepository {
                     if (status == true){
                         handler.onSendOrderResponse(null);
                     }else{
-                        handler.onSendOrderResponse(new Error(String.valueOf("500"), null));
+                        handler.onSendOrderResponse(new Error(String.valueOf("500"), responeObject.getString("mensaje")));
                     }
                 } catch (JSONException e) {
+                    handler.onSendOrderResponse(new Error(String.valueOf("500"), null));
                     e.printStackTrace();
                 }
             }

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
+import android.provider.Settings;
 import android.util.Base64;
 import android.widget.Toast;
 
@@ -38,6 +39,20 @@ public class PreferencesManager {
             editor.putString(Constants.CURRENT_USER, user.toJsonString());
         }
         editor.apply();
+    }
+
+    public static String getImeiDevice() {
+        return Settings.Secure.getString(AppDomiDomi.getInstance().getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+    }
+
+    public static void saveBoolean(String key, boolean value){
+        SharedPreferences.Editor editor = PreferencesManager.getSharedPreferences().edit();
+        editor.putBoolean(key, value);
+        editor.apply();
+    }
+
+    public static boolean getBoolean(String key){
+        return PreferencesManager.getSharedPreferences().getBoolean(key, false);
     }
 
     public static User getCurrentUser() {

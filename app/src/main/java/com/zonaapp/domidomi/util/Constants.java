@@ -12,4 +12,5 @@ public class Constants {
     public static String  PREFS_FILE = "preferences";
     public static String  CURRENT_USER = "currentUser";
     public static String  USER_NOT_FOUND = "userNotFound";
+    public static String  CURRENT_ORDER = "currentOrder";
 }

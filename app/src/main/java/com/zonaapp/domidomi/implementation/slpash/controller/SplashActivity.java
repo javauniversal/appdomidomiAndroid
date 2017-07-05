@@ -26,8 +26,11 @@ import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.zonaapp.domidomi.R;
 import com.zonaapp.domidomi.implementation.dashboard.controller.OrderActivity;
+import com.zonaapp.domidomi.implementation.delivery.OrderStatusActivity;
 import com.zonaapp.domidomi.implementation.slpash.business.SplashBusinessLogic;
 import com.zonaapp.domidomi.model.Establishment;
+import com.zonaapp.domidomi.util.Constants;
+import com.zonaapp.domidomi.util.PreferencesManager;
 
 import java.util.List;
 
@@ -62,7 +65,15 @@ public class SplashActivity extends AppCompatActivity implements ISplashView, Lo
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         mSplashBL = new SplashBusinessLogic(this);
         findViewById(R.id.imageSplash).animate().alpha(1).scaleY(1.5f).scaleX(1.5f).setDuration(2000L).setInterpolator(new AccelerateDecelerateInterpolator());
-        validateProviders();
+
+        if (PreferencesManager.getBoolean(Constants.CURRENT_ORDER)){
+            Intent intent = new Intent(this, OrderStatusActivity.class);
+            intent.putExtra("isOrderActive", true);
+            startActivity(intent);
+        }else{
+            validateProviders();
+        }
+
 
     }
 
@@ -165,7 +176,8 @@ public class SplashActivity extends AppCompatActivity implements ISplashView, Lo
     }
 
     public void initializeLocationService() {
-        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 500, 10, this);
+        mLocationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 100, this);
+
     }
 
     @AfterPermissionGranted(RC_LOCATION_CONTACTS_PERM)
